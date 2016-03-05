@@ -1,5 +1,5 @@
 source 'http://rubygems.org'
-
+ruby "2.1.5"
 gem 'rails', '4.1.8'
 gem 'sqlite3'
 gem 'sass-rails', '~> 4.0', '>= 4.0.5'
@@ -12,6 +12,14 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'bootstrap-sass', '~> 3.3', '>= 3.3.4.1'
 gem "paperclip", "~> 4.3"
 
-gem 'money', '~> 6.7'
+group :production do
+  gem 'pg'
+  gem 'rails_12factor'
+end
+
+group :development, :test do
+  gem 'sqlite3'
+end
+
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
