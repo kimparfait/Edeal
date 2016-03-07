@@ -8,4 +8,5 @@ class Listing < ActiveRecord::Base
 	 validates :phone, length: { maximum: 14 }
 	 validates :phone, uniqueness: true
 	 validates_attachment_presence :image
+	 belongs_to :user
 end
