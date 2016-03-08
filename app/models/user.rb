@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 
         validates :name, presence: true
         validates :phone, presence: true
+         validates :email, uniqueness: true
 
         has_many :listings, dependent: :destroy
 end
