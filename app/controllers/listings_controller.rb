@@ -10,7 +10,12 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
+    if params[:category].blank?
     @listings = Listing.all.order("created_at DESC")
+  else
+    @category_id = Category.find_by(name: params[:category]).id
+    @listings = Listing.where(:category_id => @category_id).order("created_at DESC")
+  end
   end
 
   # GET /listings/1
@@ -21,17 +26,21 @@ class ListingsController < ApplicationController
   # GET /listings/new
   def new
     @listing = Listing.new
-  end
+    @categories = Category.all.map{|c| [c.name, c.id]}
+  end 
 
   # GET /listings/1/edit
   def edit
+     @categories = Category.all.map{|c| [c.name, c.id]}
   end
 
   # POST /listings
   # POST /listings.json
   def create
     @listing = Listing.new(listing_params)
+    @listing.category_id = params[:category_id]
     @listing.user_id = current_user.id
+
 
     respond_to do |format|
       if @listing.save
@@ -49,6 +58,7 @@ class ListingsController < ApplicationController
   # PATCH/PUT /listings/1.json
   def update
     respond_to do |format|
+      @listing.category_id = params[:category_id]
       if @listing.update(listing_params)
         format.html { redirect_to @listing, notice: 'Listing was successfully updated.' }
         format.json { render :show, status: :ok, location: @listing }
@@ -77,7 +87,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:name, :description, :price, :image, :address, :phone)
+      params.require(:listing).permit(:name, :description, :price, :image, :address, :phone, :category_id)
     end
     def check_user
        if current_user != @listing.user

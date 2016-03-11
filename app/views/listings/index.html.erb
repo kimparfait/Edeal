@@ -3,6 +3,12 @@
 <h1 style="color:Cornsilk ;">Handcrafted items around your town</h1>
 <h2 style="color:Cornsilk ;">Discover one-of-a-kind items</h2>
 </div>
+  <h3 class="current-category" style="color:blue" > <%= params[:category] %></h3>
+  <% if @listings.count== 0 %>
+
+  <h3> There are  no Items currently for that category </h3>
+
+  <%else%>
 
 <div class="center">
   <div class="row">
@@ -14,10 +20,8 @@
           <div class="caption">
             <h3><%= listing.name %></h3>
             <p><%= number_to_currency(listing.price,:unit => "UGX") %></p>
-            <p>Posted by: <%= listing.user.name%></p>
-            
-            
-            
+            <p style="color:blue">Posted by: <%= listing.user.name%></p>
+          
             </div>
           </div>
        
@@ -26,7 +30,7 @@
     
   </div>
 </div>
-
+<%end%>
 <br>
 <% if user_signed_in? %>
   <%= link_to 'New Listing', new_listing_path, class: "btn btn-primary" %>   

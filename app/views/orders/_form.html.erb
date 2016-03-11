@@ -14,19 +14,19 @@
 
   <div class="form-group">
     <%= f.label :address %><br>
-    <%= f.text_area :address,class: "form-control" %>
+    <%= f.text_area :address, placeholder: "your address",class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :city %><br>
-    <%= f.text_field :city, class: "form-control"%>
+    <%= f.text_field :city, placeholder: "city", class: "form-control"%>
   </div>
   <div class="form-group">
     <%= f.label :number %><br>
-    <%= f.text_field :number, class: "form-control" %>
+    <%= f.text_field :number,placeholder: "phone", class: "form-control" %>
   </div>
   <div class="form-group">
     <%= f.label :message %><br>
-    <%= f.text_area :message, class: "form-control" %>
+    <%= f.text_area :message, placeholder: "message for seller", class: "form-control" %>
   </div>
   <div class="form-group ">
     <%= f.submit "complete Order", class: "btn btn-success" %>
