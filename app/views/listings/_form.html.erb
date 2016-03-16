@@ -11,15 +11,20 @@
       </ul>
     </div>
   <% end %>
+   <div class="form-group">
+  <%= select_tag(:location_id,options_for_select(@locations), :prompt=>"select your location")%>
+  </div>
+  <div class="form-group">
 <%= select_tag(:category_id,options_for_select(@categories), :prompt=>"select a category")%>
+</div>
   <div class="form-group">
 
     <%= f.label :name %><br>
-    <%= f.text_field :name , placeholder: "name", class: "form-control" %>
+    <%= f.text_field :name , placeholder: "name", class: "form-control border-radius-small" %>
   </div>
 <div class="form-group">
     <%= f.label :description %><br>
-    <%= f.text_area :description ,  placeholder: "Item description",class: "form-control"%>
+    <%= f.text_area :description ,  placeholder: "Item description",class: "form-control border-radius-small"%>
   </div>
  <div class="form-group">
     <%= f.label :price %><br>
