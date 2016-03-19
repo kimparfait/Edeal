@@ -19,5 +19,6 @@ end
  has_many :orders
  belongs_to :category
   belongs_to :location
+  has_many   :reviews
 
 end

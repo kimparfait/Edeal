@@ -1,9 +1,13 @@
+
+
 <div class="jumbotron">
 
 <h1 style="color:Cornsilk ;">Handcrafted items around your town</h1>
-<h2 style="color:Cornsilk ;">Discover one-of-a-kind items</h2>
+<h2 style="color:Cornsilk ;">Advertise your products with edeal</h2>
 </div>
+<div class="black">
   <h3 class="current-category" style="color:blue" > <%= params[:category] %></h3>
+  <h3 class="current-category" style="color:blue" > <%= params[:location] %></h3>
   <% if @listings.count== 0 %>
 
   <h3> There are  no Items currently for that category </h3>
@@ -21,9 +25,7 @@
             <h3><%= listing.name %></h3>
             <p><%= number_to_currency(listing.price,:unit => "UGX") %></p>
             <p style="color:blue">Posted by: <%= listing.user.name%></p>
-            <button type="button" class="btn btn-primary " data-toggle="modal" data-target="#myModal">
-  Show Ad
-</button>
+           
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -74,3 +76,4 @@
 <%end%>
 <br>
 
+</div>

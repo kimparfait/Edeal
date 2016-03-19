@@ -10,21 +10,30 @@ class ListingsController < ApplicationController
   # GET /listings
   # GET /listings.json
   def index
-    if params[:category].blank?
-    @listings = Listing.all.order("created_at DESC")
-  else 
-    @category_id = Category.find_by(name: params[:category]).id
-    @listings = Listing.where(:category_id => @category_id).order("created_at DESC")
+
+  @listings = Listing.all.order("created_at DESC")
+
+  if params[:category].present?
+    category_id = Category.find_by(name: params[:category]).try(:id)
+    @listings = @listings.where(category_id: category_id) if category_id
   end
 
-
-
+  if params[:location].present?
+    location_id = Location.find_by(name: params[:location]).try(:id)
+    @listings = @listings.where(location_id: location_id) if location_id
   end
+
+end
  
 
   # GET /listings/1
   # GET /listings/1.json
   def show
+      if @listing.reviews.blank?
+      @average_review = 0
+    else
+      @average_review = @listing.reviews.average(:rating).round(2)
+    end
   end
 
   # GET /listings/new

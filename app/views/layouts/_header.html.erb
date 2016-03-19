@@ -1,3 +1,5 @@
+
+
 <nav class="navbar navbar-default navbar-static-top" >
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -75,7 +77,7 @@
           
         <% else %>
 
-          <li ><%= link_to "Sign Up", new_user_registration_path %></li>
+          <li > <%= link_to "Hi!Sign Up", new_user_registration_path %></li>
            <li><%= link_to "Sign In", new_user_session_path %></li>
         <%end%>
 
@@ -83,3 +85,37 @@
    <!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<marquee >
+
+<div class="id="clockbox" style="text-align: right; text-color:#333333; font:12pt Arial;"">
+<script type="text/javascript">
+tday=new Array("Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday");
+tmonth=new Array("January","February","March","April","May","June","July","August","September","October","November","December");
+
+function GetClock(){
+var d=new Date();
+var nday=d.getDay(),nmonth=d.getMonth(),ndate=d.getDate(),nyear=d.getYear();
+if(nyear<1000) nyear+=1900;
+var nhour=d.getHours(),nmin=d.getMinutes(),nsec=d.getSeconds(),ap;
+
+if(nhour==0){ap=" AM";nhour=12;}
+else if(nhour<12){ap=" AM";}
+else if(nhour==12){ap=" PM";}
+else if(nhour>12){ap=" PM";nhour-=12;}
+
+if(nmin<=9) nmin="0"+nmin;
+if(nsec<=9) nsec="0"+nsec;
+
+document.getElementById('clockbox').innerHTML=""+tday[nday]+", "+tmonth[nmonth]+" "+ndate+", "+nyear+" "+nhour+":"+nmin+":"+nsec+ap+"";
+}
+
+window.onload=function(){
+GetClock();
+setInterval(GetClock,1000);
+}
+</script>
+<div id="clockbox"></div>
+
+
+</div>
+</marquee>
